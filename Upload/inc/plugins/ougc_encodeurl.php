@@ -218,7 +218,7 @@ class OUGC_EncodeURL
 	
 		$this->load_language();
 
-		if($file_exists = (PLUGINLIBRARY))
+		if($file_exists = file_exists(PLUGINLIBRARY))
 		{
 			global $PL;
 
