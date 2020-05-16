@@ -307,7 +307,7 @@ class OUGC_EncodeURL
 			$post_urls = $matches[2];
 		}
 
-		if(!empty($mybb->settings['ougc_encodeurl_ignored']))
+		if(!$filtered && !empty($mybb->settings['ougc_encodeurl_ignored']))
 		{
 			static $ignored = null;
 
