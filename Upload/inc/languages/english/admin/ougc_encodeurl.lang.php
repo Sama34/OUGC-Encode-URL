@@ -40,4 +40,4 @@ $l['setting_ougc_encodeurl_forums_desc'] = 'Select the forums where this this fe
 $l['setting_ougc_encodeurl_domains'] = 'Decode URLs';
 $l['setting_ougc_encodeurl_domains_desc'] = 'Paste each domain you want to decode, one domain per line.';
 $l['setting_ougc_encodeurl_ignored'] = 'Ignored URLs';
-$l['setting_ougc_encodeurl_ignored_desc'] = 'Paste each domain you want to ignore, one domain per line.';
+$l['setting_ougc_encodeurl_ignored_desc'] = 'Paste each domain you want to ignore, one domain per line. This setting only works if the "Decode URLs" is left empty.';
