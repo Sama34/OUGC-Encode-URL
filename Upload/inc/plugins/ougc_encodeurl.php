@@ -78,6 +78,11 @@ class OUGC_EncodeURL
 		if(!defined('IN_ADMINCP'))
 		{
 			$plugins->add_hook('parse_message', array($this, 'hook_parse_message'));
+
+			if(!empty($settings['ougc_encodeurl_mybbredirect']))
+			{
+				$plugins->add_hook('global_end', array($this, 'hook_global_end'));
+			}
 		}
 
 		$this->key = (string)$settings['ougc_encodeurl_key'];
@@ -131,6 +136,12 @@ class OUGC_EncodeURL
 			   'description'	=> $lang->setting_ougc_encodeurl_ignored_desc,
 			   'optionscode'	=> 'textarea',
 			   'value'			=> (string)$_SERVER['SERVER_NAME']
+			),
+			'mybbredirect'				=> array(
+			   'title'			=> $lang->setting_ougc_encodeurl_mybbredirect,
+			   'description'	=> $lang->setting_ougc_encodeurl_mybbredirect_desc,
+			   'optionscode'	=> 'yesno',
+			   'value'			=> 1
 			)
 		));
 
@@ -376,13 +387,28 @@ class OUGC_EncodeURL
 	
 		$message = str_replace(array_keys($ougc_encodeurl_names[$post['pid']]), array_values($ougc_encodeurl_names[$post['pid']]), $message);
 	}
+
+	// Hook: contact_do_start
+	function hook_global_end(&$message)
+	{
+		global $mybb, $lang;
+
+		$url = base64_decode($mybb->get_input('url'));
+	
+		if(!my_validate_url($url))
+		{
+			error();
+		}
+	
+		redirect($url);
+	}
 }
 
-global $mybb, $ougc_encodeurl, $lang;
+global $mybb, $ougc_encodeurl;
 
 $ougc_encodeurl = new OUGC_EncodeURL;
 
-if(defined('THIS_SCRIPT') && THIS_SCRIPT == 'misc.php' && $mybb->get_input('action') == 'ougc_decodeurl')
+if(defined('THIS_SCRIPT') && THIS_SCRIPT == 'misc.php' && $mybb->get_input('action') == 'ougc_decodeurl' && empty($mybb->settings['ougc_encodeurl_mybbredirect']))
 {
 	$url = base64_decode($mybb->get_input('url'));
 

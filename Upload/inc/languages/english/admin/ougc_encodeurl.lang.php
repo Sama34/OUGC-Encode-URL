@@ -37,7 +37,9 @@ $l['ougc_encodeurl_pluginlibrary'] = 'This plugin requires <a href="{1}">PluginL
 // Settings
 $l['setting_ougc_encodeurl_forums'] = 'Allowed Forums';
 $l['setting_ougc_encodeurl_forums_desc'] = 'Select the forums where this this feature is enabled.';
-$l['setting_ougc_encodeurl_domains'] = 'Decode URLs';
-$l['setting_ougc_encodeurl_domains_desc'] = 'Paste each domain you want to decode, one domain per line.';
+$l['setting_ougc_encodeurl_domains'] = 'Affected Domains';
+$l['setting_ougc_encodeurl_domains_desc'] = 'Paste each domain you want to encode, one domain per line.';
 $l['setting_ougc_encodeurl_ignored'] = 'Ignored URLs';
 $l['setting_ougc_encodeurl_ignored_desc'] = 'Paste each domain you want to ignore, one domain per line. This setting only works if the "Decode URLs" is left empty.';
+$l['setting_ougc_encodeurl_mybbredirect'] = 'Use MyBB Redirect';
+$l['setting_ougc_encodeurl_mybbredirect_desc'] = 'Enable this feature to use a friendly redirect instead of a quick redirect.';
