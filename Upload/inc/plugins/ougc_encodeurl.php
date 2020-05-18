@@ -393,6 +393,11 @@ class OUGC_EncodeURL
 	{
 		global $mybb, $lang;
 
+		if(!(defined('THIS_SCRIPT') && THIS_SCRIPT == 'misc.php' && $mybb->get_input('action') == 'ougc_decodeurl'))
+		{
+			return;
+		}
+
 		$url = base64_decode($mybb->get_input('url'));
 	
 		if(!my_validate_url($url))
