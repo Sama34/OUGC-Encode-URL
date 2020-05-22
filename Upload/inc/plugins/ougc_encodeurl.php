@@ -400,7 +400,7 @@ class OUGC_EncodeURL
 
 		$url = base64_decode($mybb->get_input('url'));
 	
-		if(!my_validate_url($url))
+		if(function_exists('my_validate_url') && !my_validate_url($url))
 		{
 			error();
 		}
@@ -419,7 +419,7 @@ if(defined('THIS_SCRIPT') && THIS_SCRIPT == 'misc.php' && $mybb->get_input('acti
 
 	run_shutdown();
 
-	if(my_validate_url($url))
+	if(function_exists('my_validate_url') && my_validate_url($url))
 	{
 		header("Location: {$url}");
 	}
