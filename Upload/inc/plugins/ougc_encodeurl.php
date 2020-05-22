@@ -400,12 +400,22 @@ class OUGC_EncodeURL
 
 		$url = base64_decode($mybb->get_input('url'));
 	
-		if(function_exists('my_validate_url') && !my_validate_url($url))
+		if(!$this->my_validate_url($url))
 		{
 			error();
 		}
 	
 		redirect($url);
+	}
+
+	function my_validate_url($url)
+	{
+		if(function_exists('my_validate_url'))
+		{
+			return my_validate_url($url);
+		}
+
+		return !(my_substr($url, 0, 7) !== 'http://' && my_substr($url, 0, 8) !== 'https://' && my_substr($url, 0, 1) !== '/');
 	}
 }
 
@@ -419,7 +429,7 @@ if(defined('THIS_SCRIPT') && THIS_SCRIPT == 'misc.php' && $mybb->get_input('acti
 
 	run_shutdown();
 
-	if(function_exists('my_validate_url') && my_validate_url($url))
+	if($ougc_encodeurl->my_validate_url($url))
 	{
 		header("Location: {$url}");
 	}
